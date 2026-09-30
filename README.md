@@ -1,4 +1,4 @@
-![Image locale](./logo.png)
+![Image locale](./sentinel.png)
 
 # Sentinel
 

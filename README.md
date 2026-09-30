@@ -13,6 +13,8 @@ information and generates security reports.
 ---
 📖 _Read this in other languages:_ [French](README.fr.md)
 
+---
+
 ## Features
 
 Sentinel currently provides:
@@ -191,6 +193,7 @@ sentinel/
 ├── README.md
 └── uv.lock
 ```
+---
 
 ## Main components
 
@@ -206,6 +209,8 @@ It is responsible for:
 * 4 Normalizing findings
 * 5 Building the scan result
 * 6 Calculating the security status
+  
+---
 
 ### Plugins
 
@@ -222,6 +227,7 @@ plugins/
 ├── python/
 └── ruby/
 ```
+---
 
 ### Providers
 
@@ -234,6 +240,7 @@ providers/
 ├── nvd/
 └── osv/
 ```
+---
 
 ### Enrichers
 
@@ -244,6 +251,7 @@ enrichers/
 ├── epss/
 └── kev/
 ```
+---
 
 ### Services
 
@@ -264,6 +272,8 @@ Supported formats include:
 * JSON
 * Markdown
 * SARIF
+  
+---
 
 ### API
 
@@ -275,6 +285,8 @@ api/
 ├── routers/
 └── schemas/
 ```
+
+---
 
 ## Requirements
 
@@ -292,6 +304,8 @@ mypy
 Pyright
 
 Docker is optional for local development but provides the recommended containerized PostgreSQL environment.
+
+---
 
 ## Installation
 
@@ -505,6 +519,8 @@ EPSS_BATCH_SIZE=100
 
 Sensitive credentials such as API keys and tokens should not be committed to the repository.
 
+---
+
 ## Database
 
 Sentinel uses SQLAlchemy for database access and Alembic for database migrations.
@@ -595,6 +611,7 @@ When running Sentinel directly on the host:
 ```env
 DATABASE_URL=postgresql+psycopg://sentinel:sentinel@localhost:5432/sentinel
 ```
+---
 
 ## Docker
 
@@ -652,6 +669,8 @@ The PostgreSQL data is stored in the Docker volume:
 postgres_data
 ```
 
+---
+
 ## API
 
 Sentinel exposes a REST API implemented with FastAPI.
@@ -683,6 +702,8 @@ http://localhost:8000/redoc
 ```
 
 When running through Docker, port 8000 is exposed by the Sentinel container.
+
+---
 
 ## CLI
 
@@ -882,6 +903,7 @@ The generated report is placed under:
 ```
 htmlcov/
 ```
+---
 
 ## Code Quality
 
@@ -918,14 +940,6 @@ Run Pyright:
 pyright
 ```
 
-### Bandit
-
-Run Bandit:
-
-```bash
-bandit -r sentinel
-```
-
 ### Development checks
 
 Before submitting changes, the following checks should pass:
@@ -937,6 +951,8 @@ mypy sentinel
 pyright
 bandit -r sentinel
 ```
+
+---
 
 ## Project principles
 
@@ -950,6 +966,8 @@ Sentinel is designed around several principles:
 
 *New ecosystems, vulnerability providers and report formats can be added without changing the complete scanning pipeline.
 
+---
+
 ## Normalization
 
 * Vulnerability information coming from different providers is normalized into a common internal representation.
@@ -959,6 +977,8 @@ Sentinel is designed around several principles:
 * Security status and risk calculations are based on explicit rules.
 
 * Separation of concerns
+
+---
 
 ## The project separates:
 
@@ -984,6 +1004,8 @@ A result can depend on:
 * unknown vulnerability states
 
 A SECURE result therefore means that Sentinel did not identify an applicable open vulnerability according to the information available to the scanner at the time of the scan.
+
+---
 
 ## Project Status
 

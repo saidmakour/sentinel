@@ -25,7 +25,7 @@ database/
 *.db
 *.sqlite
 *.sqlite3
-
+.coverage
 .env
 
 *.txt

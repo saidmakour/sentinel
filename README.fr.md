@@ -1,3 +1,6 @@
+
+[![CI](https://github.com/saidmakour/sentinel/actions/workflows/ci.yml/badge.svg)](https://github.com/saidmakour/sentinel/actions/workflows/ci.yml)
+
 ![Image locale](./sentinel.png)
 
 # Sentinel
@@ -1146,9 +1149,7 @@ Les principaux composants actuellement disponibles sont :
 
 ## Licence
 
-Projet interne.
-
-Sentinel est actuellement destiné à un usage interne.
+Sentinel est un logiciel open-source distribué sous la licence [GPL](https://www.gnu.org/licenses/licenses.html).
 
 
 ## Glossaire et abréviations

@@ -20,7 +20,7 @@ htmlconv/
 logs/
 reports/
 workspace/
-database/
+
 
 *.db
 *.sqlite

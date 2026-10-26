@@ -18,8 +18,8 @@ sentinel.egg-info/
 migrations/*
 htmlconv/
 logs/
-reports/
 workspace/
+reports/*
 
 
 *.db

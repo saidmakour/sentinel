@@ -57,6 +57,32 @@ def db_session() -> Session:
 
 
 @pytest.fixture
+def cli_session_factory(monkeypatch):
+    engine = create_engine(
+        "sqlite://",
+        connect_args={"check_same_thread": False},
+        poolclass=StaticPool,
+    )
+
+    Base.metadata.create_all(engine)
+
+    test_session_factory = sessionmaker(
+        bind=engine,
+        expire_on_commit=False,
+    )
+
+    # À adapter au module qui contient réellement les commandes user.
+    monkeypatch.setattr(
+        "sentinel.cli.user_cli.SessionLocal",
+        test_session_factory,
+    )
+
+    yield test_session_factory
+
+    Base.metadata.drop_all(engine)
+    engine.dispose()
+    
+@pytest.fixture
 def temp_project(tmp_path: Path) -> Path:
     """
     Create a temporary project directory.

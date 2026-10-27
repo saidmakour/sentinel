@@ -10,22 +10,20 @@ runner = CliRunner()
 
 def get_user(
     username: str,
+    session_factory,
 ) -> User | None:
-    session = SessionLocal()
+    session = session_factory()
 
     try:
         return (
             session.query(User)
-            .filter_by(
-                username=username,
-            )
+            .filter_by(username=username)
             .first()
         )
     finally:
         session.close()
 
-
-def test_user_create() -> None:
+def test_user_create(cli_session_factory) -> None:
     result = runner.invoke(
         app,
         [
@@ -37,17 +35,20 @@ def test_user_create() -> None:
         ],
     )
 
-    assert result.exit_code == 0
+    assert result.exit_code == 0, (
+        f"Sortie CLI : {result.output}\n"
+        f"Exception : {result.exception!r}"
+    )
     assert "Utilisateur créé" in result.output
 
     user = get_user(
         "john",
+        cli_session_factory,
     )
 
     assert user is not None
     assert user.is_admin is False
     assert user.is_active is True
-
 
 @pytest.mark.skip(reason="OK")
 def test_user_create_admin() -> None:

@@ -22,6 +22,8 @@ def test_default_profile_providers() -> None:
     assert profile.providers == [
         Provider.OSV,
         Provider.NVD,
+        Provider.GHSA,
+        Provider.GITHUB_ADVISORY,
     ]
 
 

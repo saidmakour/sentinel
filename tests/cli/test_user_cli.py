@@ -7,7 +7,15 @@ from sentinel.models.user import User
 
 runner = CliRunner()
 
-
+def assert_cli_success(result) -> None:
+    if result.exit_code != 0:
+        pytest.fail(
+            f"Commande CLI en échec.\n"
+            f"Code de sortie : {result.exit_code}\n"
+            f"Sortie standard :\n{result.stdout}\n"
+            f"Exception : {result.exception!r}"
+        )
+        
 def get_user(
     username: str,
     session_factory,
@@ -35,10 +43,11 @@ def test_user_create(cli_session_factory) -> None:
         ],
     )
 
-    assert result.exit_code == 0, (
-        f"Sortie CLI : {result.output}\n"
-        f"Exception : {result.exception!r}"
-    )
+    #assert result.exit_code == 0, (
+    #    f"Sortie CLI : {result.output}\n"
+    #    f"Exception : {result.exception!r}"
+    #)
+    assert_cli_success(result)
     assert "Utilisateur créé" in result.output
 
     user = get_user(
@@ -63,8 +72,9 @@ def test_user_create_admin() -> None:
         ],
     )
 
-    assert result.exit_code == 0
-
+    #assert result.exit_code == 0
+    assert_cli_success(result)
+    
     user = get_user(
         "admin",
     )
@@ -86,8 +96,8 @@ def test_user_create_duplicate() -> None:
         ],
     )
 
-    assert result.exit_code == 0
-
+    #assert result.exit_code == 0
+    assert_cli_success(result)
     result = runner.invoke(
         app,
         [
@@ -112,7 +122,8 @@ def test_user_list() -> None:
         ],
     )
 
-    assert result.exit_code == 0
+    #assert result.exit_code == 0
+    assert_cli_success(result)
 
 
 def test_user_change_password() -> None:
@@ -138,7 +149,8 @@ def test_user_change_password() -> None:
         ],
     )
 
-    assert result.exit_code == 0
+    #assert result.exit_code == 0
+    assert_cli_success(result)
     assert "Mot de passe modifié" in result.output
 
 
@@ -163,8 +175,9 @@ def test_user_promote() -> None:
         ],
     )
 
-    assert result.exit_code == 0
-
+    #assert result.exit_code == 0
+    assert_cli_success(result)
+    
     user = get_user(
         "john",
     )
@@ -207,8 +220,9 @@ def test_user_demote() -> None:
         ],
     )
 
-    assert result.exit_code == 0
-
+    #assert result.exit_code == 0
+    assert_cli_success(result)
+    
     user = get_user(
         "admin1",
     )
@@ -238,8 +252,9 @@ def test_user_disable() -> None:
         ],
     )
 
-    assert result.exit_code == 0
-
+    #assert result.exit_code == 0
+    assert_cli_success(result)
+    
     user = get_user(
         "john",
     )
@@ -278,8 +293,9 @@ def test_user_enable() -> None:
         ],
     )
 
-    assert result.exit_code == 0
-
+    #assert result.exit_code == 0
+    assert_cli_success(result)
+    
     user = get_user(
         "john",
     )
@@ -310,8 +326,9 @@ def test_user_delete() -> None:
         ],
     )
 
-    assert result.exit_code == 0
-
+    #assert result.exit_code == 0
+    assert_cli_success(result)
+    
     assert (
         get_user(
             "john",

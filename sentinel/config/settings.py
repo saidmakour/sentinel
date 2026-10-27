@@ -121,7 +121,7 @@ class Settings(BaseSettings):
     kev_default_timeout: int = Field(default=30, alias="KEV_DEFAULT_TIMEOUT")
 
     # EPSS
-    epss_enabled: bool = Field(default=False, alias="EPSS_ENABLED")
+    epss_enabled: bool = Field(default=True, alias="EPSS_ENABLED")
     epss_base_url: str = Field(
         default="https://api.first.org/data/v1/epss", alias="EPSS_BASE_URL"
     )
@@ -134,7 +134,7 @@ class Settings(BaseSettings):
 
     # VulnCheck KEV
     vulncheck_kev_enabled: bool = Field(
-        default=False,
+        default=True,
         alias="VULNCHECK_KEV_ENABLED",
     )
 

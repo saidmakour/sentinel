@@ -279,6 +279,8 @@ def test_run_calls_provider_executor(
     assert provider_registry.providers == [
         Provider.OSV,
         Provider.NVD,
+        Provider.GHSA,
+        Provider.GITHUB_ADVISORY
     ]
 
 
@@ -349,6 +351,8 @@ def test_run_calls_provider_regsitry(
     assert provider_registry.providers == [
         Provider.OSV,
         Provider.NVD,
+        Provider.GHSA,
+        Provider.GITHUB_ADVISORY,
     ]
 
 

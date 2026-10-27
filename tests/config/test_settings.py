@@ -34,7 +34,7 @@ def test_settings_defaults():
     assert settings.nvd_default_timeout == 30
 
     # assert settings.ghsa_enabled is True
-    assert settings.ghsa_base_url == "https://api.github.com/graphql"
+    assert settings.ghsa_base_url == "https://api.github.com/advisories"
     assert settings.ghsa_default_timeout == 30
     # assert settings.kev_enabled is True
     assert settings.kev_base_url == (

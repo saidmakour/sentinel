@@ -163,24 +163,31 @@ def test_clone_raises_git_clone_error(
         )
 
 
+
 @patch("sentinel.sources.git.client.Repo")
 def test_pull_calls_gitpython(
     repo_mock: MagicMock,
     tmp_path: Path,
 ) -> None:
     client = GitClient()
-
     repo = repo_mock.return_value
+    repo.active_branch.name = "main"
 
-    client.pull(
-        tmp_path,
+    client.pull(tmp_path)
+
+    repo_mock.assert_called_once_with(tmp_path)
+
+    repo.git.fetch.assert_called_once_with(
+        "--prune",
+        "origin",
+        env=repo.git.fetch.call_args.kwargs["env"],
     )
 
-    repo_mock.assert_called_once_with(
-        tmp_path,
+    repo.git.reset.assert_called_once_with(
+        "--hard",
+        "origin/main",
+        env=repo.git.reset.call_args.kwargs["env"],
     )
-
-    repo.git.pull.assert_called_once()
 
 
 @patch("sentinel.sources.git.client.Repo")
@@ -188,19 +195,38 @@ def test_pull_raises_git_pull_error(
     repo_mock: MagicMock,
     tmp_path: Path,
 ) -> None:
-    repo_mock.return_value.git.pull.side_effect = GitCommandError(
-        "pull",
+    repo = repo_mock.return_value
+    repo.active_branch.name = "main"
+    repo.git.fetch.side_effect = GitCommandError(
+        "fetch",
         1,
     )
 
     client = GitClient()
 
-    with pytest.raises(
-        GitPullError,
-    ):
-        client.pull(
-            tmp_path,
-        )
+    with pytest.raises(GitPullError):
+        client.pull(tmp_path)
+
+
+@patch("sentinel.sources.git.client.Repo")
+def test_pull_raises_git_pull_error_when_reset_fails(
+    repo_mock: MagicMock,
+    tmp_path: Path,
+) -> None:
+    repo = repo_mock.return_value
+    repo.active_branch.name = "main"
+    repo.git.reset.side_effect = GitCommandError(
+        "reset",
+        1,
+    )
+
+    client = GitClient()
+
+    with pytest.raises(GitPullError):
+        client.pull(tmp_path)
+
+    repo.git.fetch.assert_called_once()
+    repo.git.reset.assert_called_once()
 
 
 @patch("sentinel.sources.git.client.Repo")

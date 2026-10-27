@@ -1,6 +1,7 @@
+import os
 from collections.abc import Generator
 from pathlib import Path
-
+from dotenv import load_dotenv
 import pytest
 from fastapi.testclient import TestClient
 from sqlalchemy import create_engine
@@ -17,6 +18,13 @@ from sentinel.services.auth_service import AuthService
 
 # Import des modèles pour enregistrer les tables
 
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+
+load_dotenv(
+    PROJECT_ROOT / ".env.test",
+    override=True,
+)
 
 @pytest.fixture
 def db_session() -> Session:

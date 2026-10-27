@@ -19,6 +19,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Verify test environment file
+        run: |
+          test -f .env.test || {
+            echo "Erreur : .env.test absent du dépôt"
+            exit 1
+          }
+
       - name: Install uv
         uses: astral-sh/setup-uv@v6
 

@@ -154,7 +154,7 @@ def test_user_change_password() -> None:
     assert "Mot de passe modifié" in result.output
 
 
-def test_user_promote() -> None:
+def test_user_promote(cli_session_factory) -> None:
     runner.invoke(
         app,
         [
@@ -180,13 +180,14 @@ def test_user_promote() -> None:
     
     user = get_user(
         "john",
+        cli_session_factory
     )
 
     assert user is not None
     assert user.is_admin is True
 
 
-def test_user_demote() -> None:
+def test_user_demote(cli_session_factory) -> None:
     runner.invoke(
         app,
         [
@@ -225,13 +226,14 @@ def test_user_demote() -> None:
     
     user = get_user(
         "admin1",
+        cli_session_factory
     )
 
     assert user is not None
     assert user.is_admin is False
 
 
-def test_user_disable() -> None:
+def test_user_disable(cli_session_factory) -> None:
     runner.invoke(
         app,
         [
@@ -257,13 +259,14 @@ def test_user_disable() -> None:
     
     user = get_user(
         "john",
+        cli_session_factory
     )
 
     assert user is not None
     assert user.is_active is False
 
 
-def test_user_enable() -> None:
+def test_user_enable(cli_session_factory) -> None:
     runner.invoke(
         app,
         [
@@ -298,13 +301,14 @@ def test_user_enable() -> None:
     
     user = get_user(
         "john",
+        cli_session_factory
     )
 
     assert user is not None
     assert user.is_active is True
 
 
-def test_user_delete() -> None:
+def test_user_delete(cli_session_factory) -> None:
     runner.invoke(
         app,
         [
@@ -328,10 +332,10 @@ def test_user_delete() -> None:
 
     #assert result.exit_code == 0
     assert_cli_success(result)
-    
     assert (
         get_user(
             "john",
+            cli_session_factory
         )
         is None
     )

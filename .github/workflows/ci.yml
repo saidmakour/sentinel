@@ -40,7 +40,6 @@ jobs:
       - name: Debug Python environment
         run: |
           uv run python --version
-          uv run python -m pip --version
           uv run pytest --version
           uv run python -c "import sqlalchemy, pydantic_settings; print('SQLAlchemy:', sqlalchemy.__version__); print('pydantic-settings:', pydantic_settings.__version__)"
      

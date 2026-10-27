@@ -163,7 +163,6 @@ def test_clone_raises_git_clone_error(
         )
 
 
-
 @patch("sentinel.sources.git.client.Repo")
 def test_pull_calls_gitpython(
     repo_mock: MagicMock,

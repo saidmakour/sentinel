@@ -1,15 +1,8 @@
-from pathlib import Path
-from dotenv import load_dotenv
-
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
-
-load_dotenv(
-    PROJECT_ROOT / ".env.test",
-    override=True,
-)
-
 from collections.abc import Generator
+from pathlib import Path
+
 import pytest
+from dotenv import load_dotenv
 from fastapi.testclient import TestClient
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
@@ -25,6 +18,12 @@ from sentinel.services.auth_service import AuthService
 
 # Import des modèles pour enregistrer les tables
 
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+
+load_dotenv(
+    PROJECT_ROOT / ".env.test",
+    override=True,
+)
 
 
 @pytest.fixture
@@ -82,7 +81,8 @@ def cli_session_factory(monkeypatch):
 
     Base.metadata.drop_all(engine)
     engine.dispose()
-    
+
+
 @pytest.fixture
 def temp_project(tmp_path: Path) -> Path:
     """

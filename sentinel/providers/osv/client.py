@@ -177,4 +177,3 @@ class OSVClient(BaseHttpClient):
         return OSVResponse(
             vulns=vulnerabilities,
         )
-

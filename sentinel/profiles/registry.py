@@ -8,8 +8,7 @@ class ProfileRegistry:
         self,
         name: str,
     ) -> BaseProfile:
-
-        """ Vous pouvez définir d'autre profils et les ajouter."""
+        """Vous pouvez définir d'autre profils et les ajouter."""
         profiles: dict[str, type[BaseProfile]] = {
             "default": DefaultProfile,
             "fast": FastProfile,

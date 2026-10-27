@@ -280,7 +280,7 @@ def test_run_calls_provider_executor(
         Provider.OSV,
         Provider.NVD,
         Provider.GHSA,
-        Provider.GITHUB_ADVISORY
+        Provider.GITHUB_ADVISORY,
     ]
 
 

@@ -88,8 +88,7 @@ class Settings(BaseSettings):
     # GHSA
     ghsa_enabled: bool = Field(default=True, alias="GHSA_ENABLED")
     ghsa_base_url: str = Field(
-        default="https://api.github.com/advisories",
-        alias="GHSA_BASE_URL"
+        default="https://api.github.com/advisories", alias="GHSA_BASE_URL"
     )
     ghsa_default_timeout: int = Field(default=30, alias="GHSA_DFAULT_TIMEOUT")
     ghsa_token: str = Field(default="", alias="GHSA_TOKEN")

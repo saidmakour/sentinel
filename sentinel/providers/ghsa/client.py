@@ -108,13 +108,9 @@ class GHSAClient(BaseHttpClient):
         vulnerabilities: list[GHSAVulnerability] = []
 
         for item in data:
-            identifiers = self._parse_identifiers(
-                item.get("identifiers", [])
-            )
+            identifiers = self._parse_identifiers(item.get("identifiers", []))
 
-            package = self._parse_package(
-                item.get("vulnerabilities", [])
-            )
+            package = self._parse_package(item.get("vulnerabilities", []))
 
             raw_cvss_severities = item.get("cvss_severities", {})
 

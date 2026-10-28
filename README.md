@@ -1,5 +1,13 @@
-
+[![Python](https://img.shields.io/badge/python-%3E%3D3.13-blue?logo=python&logoColor=white)](https://www.python.org/)
 [![CI](https://github.com/saidmakour/sentinel/actions/workflows/ci.yml/badge.svg)](https://github.com/saidmakour/sentinel/actions/workflows/ci.yml)
+[![License](https://img.shields.io/github/license/saidmakour/sentinel)](https://github.com/saidmakour/sentinel)
+[![GitHub stars](https://img.shields.io/github/stars/saidmakour/sentinel)](https://github.com/saidmakour/sentinel/stargazers)
+[![GitHub issues](https://img.shields.io/github/issues/saidmakour/sentinel)](https://github.com/saidmakour/sentinel/issues)
+[![Last commit](https://img.shields.io/github/last-commit/saidmakour/sentinel)](https://github.com/saidmakour/sentinel/commits/main)
+[![Ruff](https://img.shields.io/badge/lint-Ruff-orange?logo=ruff)](https://docs.astral.sh/ruff/)
+[![Mypy](https://img.shields.io/badge/type%20checking-mypy-blue)](https://mypy.readthedocs.io/)
+[![Pyright](https://img.shields.io/badge/type%20checking-Pyright-blue)](https://github.com/microsoft/pyright)
+[![uv](https://img.shields.io/badge/package%20manager-uv-de5fe9?logo=uv)](https://docs.astral.sh/uv/)
 
 ![Image locale](./sentinel.png)
 

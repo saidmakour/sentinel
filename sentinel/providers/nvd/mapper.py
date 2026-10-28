@@ -361,5 +361,3 @@ class NVDMapper:
 
         if ecosystem is Ecosystem.RUBYGEMS:
             return vendor == "ruby-lang" or target_software == "ruby"
-
-        return False

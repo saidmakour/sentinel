@@ -130,7 +130,7 @@ class RepositoryService:
             application_id=application_id,
             name=name,
             local_path=local_path,
-            remote_url=remote_url,
+            remote_url=remote_url or "",
             auth_method=auth_method,
             default_branch=default_branch,
             language=language,

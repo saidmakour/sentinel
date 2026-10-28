@@ -179,7 +179,7 @@ def add_repo(
             application_id=application_id,
             name=name,
             local_path=str(path),
-            remote_url=remote_url,
+            remote_url=remote_url or "",
             default_branch=branch,
             language=language,
             package_manager=package_manager,
